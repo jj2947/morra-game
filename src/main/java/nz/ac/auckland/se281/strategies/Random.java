@@ -7,7 +7,7 @@ import nz.ac.auckland.se281.Utils;
 public class Random implements Strategy {
 
   @Override
-  public Input getInput() {
+  public Input getAction() {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = Utils.getRandomNumber(fingers + 1, fingers + 5);
     Input input = new Input("Jarvis");

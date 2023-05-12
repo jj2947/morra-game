@@ -2,11 +2,11 @@ package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
-import nz.ac.auckland.se281.strategies.Ai;
+import nz.ac.auckland.se281.strategies.AiStrategy;
 
 public class MasterDifficulty implements AiDifficulty {
 
-  private Ai ai = new Ai(this);
+  private AiStrategy ai = new AiStrategy(this);
 
   @Override
   public Input getAiInput(int roundNumber, List<Integer> inputs) {

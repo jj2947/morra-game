@@ -7,12 +7,12 @@ import nz.ac.auckland.se281.difficulties.HardDifficulty;
 import nz.ac.auckland.se281.difficulties.MasterDifficulty;
 import nz.ac.auckland.se281.difficulties.MediumDifficulty;
 
-public class Ai {
+public class AiStrategy {
 
   private Strategy strategy;
   private AiDifficulty difficulty;
 
-  public Ai(AiDifficulty difficulty) {
+  public AiStrategy(AiDifficulty difficulty) {
     this.difficulty = difficulty;
     this.strategy = new Random();
   }
@@ -36,6 +36,6 @@ public class Ai {
   }
 
   public Input play() {
-    return strategy.getInput();
+    return strategy.getAction();
   }
 }

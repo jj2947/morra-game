@@ -35,7 +35,7 @@ public class Top implements Strategy {
   }
 
   @Override
-  public Input getInput() {
+  public Input getAction() {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = fingers + getTop();
     Input input = new Input("Jarvis");

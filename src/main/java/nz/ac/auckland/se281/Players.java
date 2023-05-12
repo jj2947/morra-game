@@ -2,7 +2,7 @@ package nz.ac.auckland.se281;
 
 public class Players {
 
-  int pointsToWin;
+  private int pointsToWin;
 
   public Players(int pointsToWin) {
     this.pointsToWin = pointsToWin;

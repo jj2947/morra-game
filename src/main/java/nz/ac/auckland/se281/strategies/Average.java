@@ -20,7 +20,7 @@ public class Average implements Strategy {
   }
 
   @Override
-  public Input getInput() {
+  public Input getAction() {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = fingers + (int) avg;
     Input input = new Input("Jarvis");
