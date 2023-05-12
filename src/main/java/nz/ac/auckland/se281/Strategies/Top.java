@@ -30,7 +30,7 @@ public class Top implements Strategy {
                         top = fingers.get(i);
                         highestCount = count;
                     }
-                    
+
                 }
             }
         }

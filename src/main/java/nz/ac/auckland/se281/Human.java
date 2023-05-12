@@ -30,7 +30,8 @@ public class Human {
         }
 
         inputs.add(playerInput);
-        MessageCli.PRINT_INFO_HAND.printMessage(name, String.valueOf(playerInput.getFingers()), String.valueOf(playerInput.getSum()));
+        MessageCli.PRINT_INFO_HAND.printMessage(name, String.valueOf(playerInput.getFingers()),
+                String.valueOf(playerInput.getSum()));
         return playerInput;
     }
 }

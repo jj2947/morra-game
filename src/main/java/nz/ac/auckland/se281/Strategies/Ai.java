@@ -9,7 +9,7 @@ public class Ai {
 
     private Strategy strategy;
 
-    public Ai(Strategy  strategy){
+    public Ai(Strategy strategy) {
         this.strategy = strategy;
     }
 
@@ -28,8 +28,8 @@ public class Ai {
             setStrategy(new Top(inputs));
         }
     }
-    
-    public Input play(){
+
+    public Input play() {
         return strategy.strategy();
     }
 }

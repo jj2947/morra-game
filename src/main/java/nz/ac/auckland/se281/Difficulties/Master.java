@@ -10,7 +10,7 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Master implements AiDifficulty {
 
     Ai ai = new Ai(new Random());
-    
+
     @Override
     public Input getAiInput(int roundNumber, List<Integer> inputs) {
         ai.changeStrategy(Difficulty.MASTER, roundNumber, inputs);

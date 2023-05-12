@@ -89,7 +89,7 @@ public class Input {
             setValid(false);
             return;
         }
-        
+
         if (Integer.parseInt(fingers) < 1 || Integer.parseInt(fingers) > 5 || Integer.parseInt(sum) < 1
                 || Integer.parseInt(sum) > 10) {
             setValid(false);
