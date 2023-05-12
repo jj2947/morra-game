@@ -21,6 +21,8 @@ public class AI {
     public void changeStrategy(Difficulty difficulty, int roundNumber, List<Integer> inputs) {
         if (difficulty == Difficulty.MEDIUM && roundNumber > 3) {
             setStrategy(new Average(inputs));
+        } else if (difficulty == Difficulty.HARD && roundNumber > 3) {
+            setStrategy(new Top(inputs));
         }
     }
 
