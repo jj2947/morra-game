@@ -3,8 +3,6 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
-import nz.ac.auckland.se281.Strategies.Ai;
-import nz.ac.auckland.se281.Strategies.Strategy;
 import nz.ac.auckland.se281.Difficulties.AiDifficulty;
 import nz.ac.auckland.se281.Difficulties.AiFactory;
 
@@ -27,7 +25,6 @@ public class Morra {
   }
 
   public void play() {
-
     roundNumber++;
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
 
@@ -39,6 +36,9 @@ public class Morra {
 
     fingers.add(humanInput.getFingers());
     printResults(humanInput, aiInput);
+  }
+
+  public void showStats() {
   }
 
   private void printResults(Input humanInput, Input aiInput) {
@@ -53,7 +53,5 @@ public class Morra {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
   }
-
-  public void showStats() {
-  }
+  
 }
