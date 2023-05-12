@@ -12,6 +12,10 @@ public class Morra {
   String name;
   Difficulty difficulty;
   List<Integer> fingers = new ArrayList<>();
+  boolean startedGame = false;
+  int aiWins;
+  int humanWins;
+  int pointsToWin;
 
   public Morra() {
   }
@@ -22,9 +26,18 @@ public class Morra {
     MessageCli.WELCOME_PLAYER.printMessage(name);
     roundNumber = 0;
     this.difficulty = difficulty;
+    startedGame = true;
+    aiWins = 0;
+    humanWins = 0;
+    this.pointsToWin = pointsToWin;
   }
 
   public void play() {
+    if (!startedGame) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
     roundNumber++;
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
 
@@ -35,23 +48,54 @@ public class Morra {
     Input aiInput = aiDifficulty.getAiInput(roundNumber, fingers);
 
     fingers.add(humanInput.getFingers());
-    printResults(humanInput, aiInput);
+    String winner = getResults(humanInput, aiInput);
+
+    if (winner.equals("AI")) {
+      aiWins++;
+    } else if (winner.equals("HUMAN")) {
+      humanWins++;
+    }
+
+    if (aiWins == pointsToWin) {
+      MessageCli.END_GAME.printMessage("Jarvis", String.valueOf(roundNumber));
+      startedGame = false;
+    } else if (humanWins == pointsToWin) {
+      MessageCli.END_GAME.printMessage(name, String.valueOf(roundNumber));
+      startedGame = false;
+    }
   }
 
   public void showStats() {
+    if (!startedGame) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage(name, String.valueOf(humanWins), getRoundsToWin(humanWins));
+    MessageCli.PRINT_PLAYER_WINS.printMessage("Jarvis", String.valueOf(aiWins), getRoundsToWin(aiWins));
+
   }
 
-  private void printResults(Input humanInput, Input aiInput) {
+  private String getResults(Input humanInput, Input aiInput) {
 
     if (humanInput.getSum() == aiInput.getSum()) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+      return "DRAW";
     } else if (aiInput.getSum() == aiInput.getFingers() + humanInput.getFingers()) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+      return "AI";
     } else if (humanInput.getSum() == aiInput.getFingers() + humanInput.getFingers()) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+      return "HUMAN";
     } else {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+      return "DRAW";
     }
   }
-  
+
+  private String getRoundsToWin(int wins) {
+    int roundsToWin = pointsToWin - wins;
+    return String.valueOf(roundsToWin);
+  }
+
 }
