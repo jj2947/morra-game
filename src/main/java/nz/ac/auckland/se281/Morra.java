@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.Strategies.Random;
@@ -9,18 +10,17 @@ public class Morra {
   int roundNumber;
   String name;
   Difficulty difficulty;
-  List<Integer> fingers;
-  List<Integer> prevFingers;
+  List<Integer> fingers = new ArrayList<>();
 
   public Morra() {
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+    fingers.clear();
     name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(name);
     roundNumber = 0;
     this.difficulty = difficulty;
-    fingers.clear();
   }
 
   public void play() {
@@ -30,12 +30,11 @@ public class Morra {
 
     Human human = new Human(name);
     Input humanInput = human.play();
-    fingers.add(humanInput.getFingers());
 
     AI ai = new AI(new Random());
-    ai.changeStrategy(difficulty, roundNumber, prevFingers);
+    ai.changeStrategy(difficulty, roundNumber, fingers);
     Input aiInput = ai.play();
-    prevFingers = fingers;
+    fingers.add(humanInput.getFingers());
     printResults(humanInput, aiInput);
   }
 
