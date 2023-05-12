@@ -8,8 +8,8 @@ public class Input {
 
     public Input() {
         isValid = false;
-        fingers = "";
-        sum = "";
+        fingers = null;
+        sum = null;
     }
 
     public boolean isValid() {
