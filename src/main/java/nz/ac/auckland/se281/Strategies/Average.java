@@ -1,4 +1,4 @@
-package nz.ac.auckland.se281.Strategies;
+package nz.ac.auckland.se281.strategies;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
@@ -20,7 +20,7 @@ public class Average implements Strategy {
   }
 
   @Override
-  public Input strategy() {
+  public Input getInput() {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = fingers + (int) avg;
     Input input = new Input("Jarvis");

@@ -1,14 +1,14 @@
-package nz.ac.auckland.se281.Difficulties;
+package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.Main.Difficulty;
-import nz.ac.auckland.se281.Strategies.Ai;
-import nz.ac.auckland.se281.Strategies.Random;
+import nz.ac.auckland.se281.strategies.Ai;
+import nz.ac.auckland.se281.strategies.Random;
 
-public class Medium implements AiDifficulty {
+public class MediumDifficulty implements AiDifficulty {
 
-  Ai ai = new Ai(new Random());
+  private Ai ai = new Ai(new Random());
 
   @Override
   public Input getAiInput(int roundNumber, List<Integer> inputs) {

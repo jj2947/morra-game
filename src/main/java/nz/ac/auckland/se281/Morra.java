@@ -2,22 +2,26 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
-import nz.ac.auckland.se281.Difficulties.AiDifficulty;
-import nz.ac.auckland.se281.Difficulties.AiFactory;
+
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.difficulties.AiDifficulty;
+import nz.ac.auckland.se281.difficulties.AiFactory;
 
 public class Morra {
 
-  int roundNumber;
-  String name;
-  Difficulty difficulty;
-  List<Integer> fingers = new ArrayList<>();
-  boolean startedGame = false;
-  int aiWins;
-  int humanWins;
-  int pointsToWin;
+  private int roundNumber;
+  private String name;
+  private Difficulty difficulty;
+  private List<Integer> fingers;
+  private boolean startedGame;
+  private int aiWins;
+  private int humanWins;
+  private int pointsToWin;
 
-  public Morra() {}
+  public Morra() {
+    fingers = new ArrayList<>();
+    startedGame = false;
+  }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     fingers.clear();

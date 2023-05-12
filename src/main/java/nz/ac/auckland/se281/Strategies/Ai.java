@@ -1,4 +1,4 @@
-package nz.ac.auckland.se281.Strategies;
+package nz.ac.auckland.se281.strategies;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
@@ -29,6 +29,6 @@ public class Ai {
   }
 
   public Input play() {
-    return strategy.strategy();
+    return strategy.getInput();
   }
 }

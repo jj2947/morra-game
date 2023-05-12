@@ -1,4 +1,4 @@
-package nz.ac.auckland.se281.Strategies;
+package nz.ac.auckland.se281.strategies;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
@@ -7,8 +7,7 @@ import nz.ac.auckland.se281.Utils;
 
 public class Top implements Strategy {
 
-  List<Integer> fingers;
-  int top;
+  private List<Integer> fingers;
 
   public Top(List<Integer> fingers) {
     this.fingers = fingers;
@@ -36,7 +35,7 @@ public class Top implements Strategy {
   }
 
   @Override
-  public Input strategy() {
+  public Input getInput() {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = fingers + getTop();
     Input input = new Input("Jarvis");

@@ -1,4 +1,4 @@
-package nz.ac.auckland.se281.Strategies;
+package nz.ac.auckland.se281.strategies;
 
 import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.MessageCli;
@@ -7,7 +7,7 @@ import nz.ac.auckland.se281.Utils;
 public class Random implements Strategy {
 
   @Override
-  public Input strategy() {
+  public Input getInput() {
     int fingers = Utils.getRandomNumber(1, 5);
     int sum = Utils.getRandomNumber(fingers + 1, fingers + 5);
     Input input = new Input("Jarvis");
