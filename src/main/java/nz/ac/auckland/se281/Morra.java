@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
-import nz.ac.auckland.se281.Strategies.AI;
+import nz.ac.auckland.se281.Strategies.Ai;
 import nz.ac.auckland.se281.Strategies.Random;
 
 public class Morra {
@@ -32,7 +32,7 @@ public class Morra {
     Human human = new Human(name);
     Input humanInput = human.play();
 
-    AI ai = new AI(new Random());
+    Ai ai = new Ai(new Random());
     ai.changeStrategy(difficulty, roundNumber, fingers);
     Input aiInput = ai.play();
     fingers.add(humanInput.getFingers());

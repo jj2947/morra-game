@@ -5,11 +5,11 @@ import java.util.List;
 import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.Main.Difficulty;
 
-public class AI {
+public class Ai {
 
     private Strategy strategy;
     
-    public AI(Strategy strategy){
+    public Ai(Strategy strategy){
         this.strategy = strategy;
     }
 
