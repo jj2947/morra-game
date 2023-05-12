@@ -3,6 +3,7 @@ package nz.ac.auckland.se281.Strategies;
 import java.util.List;
 
 import nz.ac.auckland.se281.Input;
+import nz.ac.auckland.se281.MessageCli;
 import nz.ac.auckland.se281.Utils;
 
 public class Average implements Strategy {
@@ -27,6 +28,8 @@ public class Average implements Strategy {
         input.setFingers(String.valueOf(fingers));
         input.setSum(String.valueOf(sum));
         input.setValid(true);
+        MessageCli.PRINT_INFO_HAND.printMessage(input.getName(), String.valueOf(input.getFingers()),
+                String.valueOf(input.getSum()));
         return input;
     }
 
