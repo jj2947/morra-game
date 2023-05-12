@@ -3,8 +3,9 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
-import nz.ac.auckland.se281.Strategies.Ai;
 import nz.ac.auckland.se281.Strategies.Random;
+import nz.ac.auckland.se281.Difficulties.Ai;
+import nz.ac.auckland.se281.Difficulties.AiFactory;
 
 public class Morra {
 
@@ -32,7 +33,8 @@ public class Morra {
     Human human = new Human(name);
     Input humanInput = human.play();
 
-    Ai ai = new Ai(new Random());
+    Difficulty ai = AiFactory.createAi(difficulty);
+
     ai.changeStrategy(difficulty, roundNumber, fingers);
     Input aiInput = ai.play();
     fingers.add(humanInput.getFingers());

@@ -4,7 +4,7 @@ import java.util.List;
 
 import nz.ac.auckland.se281.Strategies.Average;
 
-public class Easy extends Ai {
+public class Hard extends Ai {
 
     @Override
     public void getStrategy(int roundNumber, List<Integer> inputs) {
