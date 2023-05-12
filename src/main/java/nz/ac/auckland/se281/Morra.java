@@ -2,9 +2,9 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
-import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.Difficulties.AiDifficulty;
 import nz.ac.auckland.se281.Difficulties.AiFactory;
+import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
 
@@ -17,8 +17,7 @@ public class Morra {
   int humanWins;
   int pointsToWin;
 
-  public Morra() {
-  }
+  public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     fingers.clear();
@@ -71,9 +70,10 @@ public class Morra {
       return;
     }
 
-    MessageCli.PRINT_PLAYER_WINS.printMessage(name, String.valueOf(humanWins), getRoundsToWin(humanWins));
-    MessageCli.PRINT_PLAYER_WINS.printMessage("Jarvis", String.valueOf(aiWins), getRoundsToWin(aiWins));
-
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        name, String.valueOf(humanWins), getRoundsToWin(humanWins));
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        "Jarvis", String.valueOf(aiWins), getRoundsToWin(aiWins));
   }
 
   private String getResults(Input humanInput, Input aiInput) {
@@ -97,5 +97,4 @@ public class Morra {
     int roundsToWin = pointsToWin - wins;
     return String.valueOf(roundsToWin);
   }
-
 }
