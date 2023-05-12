@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.Strategies.Random;
 
 public class Morra {
 
@@ -21,8 +22,21 @@ public class Morra {
     roundNumber++;
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
 
-    Human human = new Human();
-    
+    Human human = new Human(name);
+    Input humanInput = human.play();
+
+    AI ai = new AI(new Random());
+    Input aiInput = ai.play();
+
+    if (humanInput.getSum() == aiInput.getSum()) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    } else if (aiInput.getSum() == aiInput.getFingers() + humanInput.getFingers()) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+    } else if (humanInput.getSum() == aiInput.getFingers() + humanInput.getFingers()) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+    } else {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
   }
 
   public void showStats() {
