@@ -2,6 +2,7 @@ package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.Strategies.Random;
+import nz.ac.auckland.se281.Strategies.Strategy;
 
 public class Morra {
 
@@ -27,6 +28,11 @@ public class Morra {
 
     AI ai = new AI(new Random());
     Input aiInput = ai.play();
+
+    printResults(humanInput, aiInput);
+  }
+
+  private void printResults(Input humanInput, Input aiInput) {
 
     if (humanInput.getSum() == aiInput.getSum()) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
