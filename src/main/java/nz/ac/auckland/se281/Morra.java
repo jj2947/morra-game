@@ -2,7 +2,6 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.difficulties.AiDifficulty;
 import nz.ac.auckland.se281.difficulties.AiFactory;
@@ -16,7 +15,7 @@ public class Morra {
   private boolean startedGame;
   private int aiWins;
   private int humanWins;
-  private int pointsToWin;
+  Players players;
 
   public Morra() {
     fingers = new ArrayList<>();
@@ -32,10 +31,11 @@ public class Morra {
     startedGame = true;
     aiWins = 0;
     humanWins = 0;
-    this.pointsToWin = pointsToWin;
+    players = new Players(pointsToWin);
   }
 
   public void play() {
+
     if (!startedGame) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
@@ -51,7 +51,7 @@ public class Morra {
     Input aiInput = aiDifficulty.getAiInput(roundNumber, fingers);
 
     fingers.add(humanInput.getFingers());
-    String winner = getResults(humanInput, aiInput);
+    String winner = players.getResults(humanInput, aiInput);
 
     if (winner.equals("AI")) {
       aiWins++;
@@ -59,11 +59,7 @@ public class Morra {
       humanWins++;
     }
 
-    if (aiWins == pointsToWin) {
-      MessageCli.END_GAME.printMessage("Jarvis", String.valueOf(roundNumber));
-      startedGame = false;
-    } else if (humanWins == pointsToWin) {
-      MessageCli.END_GAME.printMessage(name, String.valueOf(roundNumber));
+    if (players.getWin(aiWins, humanWins, roundNumber, name) == true) {
       startedGame = false;
     }
   }
@@ -75,30 +71,8 @@ public class Morra {
     }
 
     MessageCli.PRINT_PLAYER_WINS.printMessage(
-        name, String.valueOf(humanWins), getRoundsToWin(humanWins));
+        name, String.valueOf(humanWins), players.getRoundsToWin(humanWins));
     MessageCli.PRINT_PLAYER_WINS.printMessage(
-        "Jarvis", String.valueOf(aiWins), getRoundsToWin(aiWins));
-  }
-
-  private String getResults(Input humanInput, Input aiInput) {
-
-    if (humanInput.getSum() == aiInput.getSum()) {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
-      return "DRAW";
-    } else if (aiInput.getSum() == aiInput.getFingers() + humanInput.getFingers()) {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
-      return "AI";
-    } else if (humanInput.getSum() == aiInput.getFingers() + humanInput.getFingers()) {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
-      return "HUMAN";
-    } else {
-      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
-      return "DRAW";
-    }
-  }
-
-  private String getRoundsToWin(int wins) {
-    int roundsToWin = pointsToWin - wins;
-    return String.valueOf(roundsToWin);
+        "Jarvis", String.valueOf(aiWins), players.getRoundsToWin(aiWins));
   }
 }
