@@ -23,19 +23,21 @@ public class Morra {
 
     MessageCli.ASK_INPUT.printMessage();
     String input = Utils.scanner.nextLine();
-    Input inputInfo = new Input();
-    inputInfo.isValidInput(input);
-    boolean isValid = inputInfo.isValid();
+    Input playerInput = new Input();
+    playerInput.isValidInput(input);
+    boolean isValid = playerInput.isValid();
 
     while (!isValid) {
       MessageCli.INVALID_INPUT.printMessage();
       MessageCli.ASK_INPUT.printMessage();
       input = Utils.scanner.nextLine();
-      inputInfo.isValidInput(input);
-      isValid = inputInfo.isValid();
+      playerInput.isValidInput(input);
+      isValid = playerInput.isValid();
     }
 
-    MessageCli.PRINT_INFO_HAND.printMessage(name, inputInfo.getFingers(), inputInfo.getSum());
+    MessageCli.PRINT_INFO_HAND.printMessage(name, playerInput.getFingers(), playerInput.getSum());
+
+    
   }
 
   public void showStats() {
