@@ -10,10 +10,10 @@ public class Average implements Strategy {
 
     private double avg = 0;
 
-    public Average(List<Input> inputs) {
+    public Average(List<Integer> inputs) {
 
-        for (Input input : inputs) {
-            avg += input.getSum();
+        for (Integer fingers : inputs) {
+            avg += fingers;
         }
 
         avg = avg / inputs.size();
