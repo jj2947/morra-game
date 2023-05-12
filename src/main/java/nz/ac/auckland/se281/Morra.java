@@ -3,6 +3,7 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.Strategies.AI;
 import nz.ac.auckland.se281.Strategies.Random;
 
 public class Morra {

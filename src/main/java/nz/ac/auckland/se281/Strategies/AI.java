@@ -1,10 +1,9 @@
-package nz.ac.auckland.se281;
+package nz.ac.auckland.se281.Strategies;
 
 import java.util.List;
 
+import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.Main.Difficulty;
-import nz.ac.auckland.se281.Strategies.Average;
-import nz.ac.auckland.se281.Strategies.Strategy;
 
 public class AI {
 
