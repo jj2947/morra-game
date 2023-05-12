@@ -85,6 +85,11 @@ public class Input {
         String fingers = sb.toString();
         String sum = sb2.toString();
 
+        if (fingers.length() == 0 || sum.length() == 0) {
+            setValid(false);
+            return;
+        }
+        
         if (Integer.parseInt(fingers) < 1 || Integer.parseInt(fingers) > 5 || Integer.parseInt(sum) < 1
                 || Integer.parseInt(sum) > 10) {
             setValid(false);
