@@ -1,18 +1,22 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Human {
 
     private String name;
+    private List<Input> inputs = new ArrayList<>();
 
     public Human(String name) {
         this.name = name;
     }
 
-    public void play() {
+    public Input play() {
         MessageCli.ASK_INPUT.printMessage();
 
         String input = Utils.scanner.nextLine();
-        Input playerInput = new Input();
+        Input playerInput = new Input(name);
 
         playerInput.isValidInput(input);
         boolean isValid = playerInput.isValid();
@@ -25,6 +29,8 @@ public class Human {
             isValid = playerInput.isValid();
         }
 
-        MessageCli.PRINT_INFO_HAND.printMessage(name, playerInput.getFingers(), playerInput.getSum());
+        inputs.add(playerInput);
+        MessageCli.PRINT_INFO_HAND.printMessage(name, String.valueOf(playerInput.getFingers()), String.valueOf(playerInput.getSum()));
+        return playerInput;
     }
 }
