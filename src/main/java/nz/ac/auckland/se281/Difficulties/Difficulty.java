@@ -5,5 +5,5 @@ import java.util.List;
 public interface Difficulty {
     
     void changeStrategy(int roundNumber, List<Integer> inputs);
-    
+
 }

@@ -9,8 +9,8 @@ public class Ai {
 
     private Strategy strategy;
     
-    public Ai(){
-        strategy = new Random();
+    public Ai(Strategy strategy){
+        this.strategy = strategy;
     }
 
     public void setStrategy(Strategy strategy) {
