@@ -12,26 +12,28 @@ public class AiStrategy {
   private Strategy strategy;
   private AiDifficulty difficulty;
 
-  public AiStrategy(AiDifficulty difficulty) {
+  public AiStrategy(AiDifficulty difficulty, Strategy strategy) {
     this.difficulty = difficulty;
-    this.strategy = new Random();
+    this.strategy = strategy;
   }
 
   public void setStrategy(Strategy strategy) {
     this.strategy = strategy;
   }
 
+  public Strategy getStrategy() {
+    return strategy;
+  }
+
   public void changeStrategy(int roundNumber, List<Integer> inputs) {
-    if (difficulty instanceof MediumDifficulty && strategy instanceof Random && roundNumber > 3) {
-      strategy = new Average(inputs);
-    } else if (difficulty instanceof HardDifficulty
-        && strategy instanceof Random
-        && roundNumber > 3) {
-      strategy = new Top(inputs);
-    } else if (difficulty instanceof MasterDifficulty && roundNumber > 3 && roundNumber % 2 == 0) {
-      strategy = new Average(inputs);
-    } else if (difficulty instanceof MasterDifficulty && roundNumber > 3 && roundNumber % 2 != 0) {
-      strategy = new Top(inputs);
+    if (difficulty instanceof MediumDifficulty) {
+      setStrategy(new Average(inputs));
+    } else if (difficulty instanceof HardDifficulty) {
+      setStrategy(new Top(inputs));
+    } else if (difficulty instanceof MasterDifficulty && roundNumber % 2 == 0) {
+      setStrategy(new Average(inputs));
+    } else if (difficulty instanceof MasterDifficulty && roundNumber % 2 != 0) {
+      setStrategy(new Top(inputs));
     }
   }
 

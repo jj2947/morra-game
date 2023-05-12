@@ -6,11 +6,11 @@ import nz.ac.auckland.se281.strategies.AiStrategy;
 
 public class HardDifficulty implements AiDifficulty {
 
-  private AiStrategy ai = new AiStrategy(this);
-
   @Override
-  public Input getAiInput(int roundNumber, List<Integer> inputs) {
-    ai.changeStrategy(roundNumber, inputs);
+  public Input getAiInput(AiStrategy ai, int roundNumber, List<Integer> inputs) {
+    if (roundNumber == 4) {
+      ai.changeStrategy(roundNumber, inputs);
+    }
     return ai.play();
   }
 }
