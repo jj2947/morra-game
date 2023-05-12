@@ -5,23 +5,31 @@ public class Input {
     private boolean isValid;
     private String fingers;
     private String sum;
+    private String name;
 
-    public Input() {
+    public Input(String name) {
         isValid = false;
         fingers = null;
         sum = null;
+        this.name = name;
     }
 
     public boolean isValid() {
         return isValid;
     }
 
-    public String getFingers() {
-        return fingers;
+    public int getFingers() {
+        int intFingers = Integer.parseInt(fingers);
+        return intFingers;
     }
 
-    public String getSum() {
-        return sum;
+    public int getSum() {
+        int intSum = Integer.parseInt(sum);
+        return intSum;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setValid(boolean isValid) {
