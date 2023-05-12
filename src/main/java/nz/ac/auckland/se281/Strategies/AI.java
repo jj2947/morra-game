@@ -22,6 +22,10 @@ public class AI {
             setStrategy(new Average(inputs));
         } else if (difficulty == Difficulty.HARD && roundNumber > 3) {
             setStrategy(new Top(inputs));
+        } else if (difficulty == Difficulty.MASTER && roundNumber > 3 && roundNumber % 2 == 0) {
+            setStrategy(new Average(inputs));
+        } else if (difficulty == Difficulty.MASTER && roundNumber > 3 && roundNumber % 2 != 0) {
+            setStrategy(new Top(inputs));
         }
     }
 
