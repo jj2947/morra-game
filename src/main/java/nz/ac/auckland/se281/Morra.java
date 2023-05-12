@@ -1,13 +1,16 @@
 package nz.ac.auckland.se281;
 
+import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.Strategies.Random;
-import nz.ac.auckland.se281.Strategies.Strategy;
 
 public class Morra {
 
   int roundNumber;
   String name;
+  Difficulty difficulty;
+  List<Integer> fingers;
+  List<Integer> prevFingers;
 
   public Morra() {
   }
@@ -16,6 +19,8 @@ public class Morra {
     name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(name);
     roundNumber = 0;
+    this.difficulty = difficulty;
+    fingers.clear();
   }
 
   public void play() {
@@ -25,10 +30,12 @@ public class Morra {
 
     Human human = new Human(name);
     Input humanInput = human.play();
+    fingers.add(humanInput.getFingers());
 
     AI ai = new AI(new Random());
+    ai.changeStrategy(difficulty, roundNumber, prevFingers);
     Input aiInput = ai.play();
-
+    prevFingers = fingers;
     printResults(humanInput, aiInput);
   }
 
