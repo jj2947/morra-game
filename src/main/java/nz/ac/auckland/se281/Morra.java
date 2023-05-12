@@ -7,24 +7,22 @@ import nz.ac.auckland.se281.difficulties.AiDifficulty;
 import nz.ac.auckland.se281.difficulties.AiFactory;
 import nz.ac.auckland.se281.strategies.AiStrategy;
 import nz.ac.auckland.se281.strategies.Random;
-import nz.ac.auckland.se281.strategies.Strategy;
 
 public class Morra {
 
   private int roundNumber;
   private String name;
-  private Difficulty difficulty;
   private List<Integer> fingers;
   private boolean startedGame;
   private int aiWins;
   private int humanWins;
   private Players players;
-  private Strategy strategy;
+  private AiDifficulty aiDifficulty;
+  private AiStrategy ai;
 
   public Morra() {
     fingers = new ArrayList<>();
     startedGame = false;
-    strategy = new Random();
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
@@ -32,11 +30,12 @@ public class Morra {
     name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(name);
     roundNumber = 0;
-    this.difficulty = difficulty;
     startedGame = true;
     aiWins = 0;
     humanWins = 0;
     players = new Players(pointsToWin);
+    aiDifficulty = AiFactory.createAi(difficulty);
+    ai = new AiStrategy(aiDifficulty, new Random());
   }
 
   public void play() {
@@ -52,11 +51,7 @@ public class Morra {
     Human human = new Human(name);
     Input humanInput = human.play();
 
-    AiDifficulty aiDifficulty = AiFactory.createAi(difficulty);
-    AiStrategy ai = new AiStrategy(aiDifficulty, strategy);
-
     Input aiInput = aiDifficulty.getAiInput(ai, roundNumber, fingers);
-    strategy = ai.getStrategy();
 
     fingers.add(humanInput.getFingers());
     String winner = players.getResults(humanInput, aiInput);
@@ -78,9 +73,7 @@ public class Morra {
       return;
     }
 
-    MessageCli.PRINT_PLAYER_WINS.printMessage(
-        name, String.valueOf(humanWins), players.getRoundsToWin(humanWins));
-    MessageCli.PRINT_PLAYER_WINS.printMessage(
-        "Jarvis", String.valueOf(aiWins), players.getRoundsToWin(aiWins));
+    players.printWins(name, humanWins);
+    players.printWins("Jarvis", aiWins);
   }
 }

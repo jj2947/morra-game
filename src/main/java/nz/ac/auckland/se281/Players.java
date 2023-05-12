@@ -40,4 +40,9 @@ public class Players {
       return "DRAW";
     }
   }
+
+  public void printWins(String name, int playerWins) {
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        name, String.valueOf(playerWins), getRoundsToWin(playerWins));
+  }
 }
