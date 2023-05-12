@@ -32,7 +32,7 @@ public class Morra {
     Human human = new Human(name);
     Input humanInput = human.play();
 
-    Ai ai = new Ai(new Random());
+    Ai ai = new Ai();
     ai.changeStrategy(difficulty, roundNumber, fingers);
     Input aiInput = ai.play();
     fingers.add(humanInput.getFingers());
