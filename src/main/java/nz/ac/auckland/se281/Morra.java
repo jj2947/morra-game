@@ -5,8 +5,6 @@ import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.difficulties.AiDifficulty;
 import nz.ac.auckland.se281.difficulties.AiFactory;
-import nz.ac.auckland.se281.strategies.AiStrategy;
-import nz.ac.auckland.se281.strategies.Random;
 
 public class Morra {
 
@@ -18,7 +16,6 @@ public class Morra {
   private int humanWins;
   private Players players;
   private AiDifficulty aiDifficulty;
-  private AiStrategy ai;
 
   public Morra() {
     fingers = new ArrayList<>();
@@ -34,8 +31,9 @@ public class Morra {
     aiWins = 0;
     humanWins = 0;
     players = new Players(pointsToWin);
+
+    // Creates Ai instance based on difficulty level given by player
     aiDifficulty = AiFactory.createAi(difficulty);
-    ai = new AiStrategy(aiDifficulty, new Random());
   }
 
   public void play() {
@@ -51,7 +49,9 @@ public class Morra {
     Human human = new Human(name);
     Input humanInput = human.play();
 
-    Input aiInput = aiDifficulty.getAiInput(ai, roundNumber, fingers);
+    // The aiDifficulty object takes the aiStrategy object as a parameter to select the right
+    // strategy and get the ai's input for the game
+    Input aiInput = aiDifficulty.getAiInput(roundNumber, fingers);
 
     fingers.add(humanInput.getFingers());
     String winner = players.getResults(humanInput, aiInput);

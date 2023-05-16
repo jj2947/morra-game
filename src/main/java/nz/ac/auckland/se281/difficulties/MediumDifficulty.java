@@ -2,15 +2,21 @@ package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
-import nz.ac.auckland.se281.strategies.AiStrategy;
+import nz.ac.auckland.se281.strategies.Average;
+import nz.ac.auckland.se281.strategies.Random;
 
-public class MediumDifficulty implements AiDifficulty {
+public class MediumDifficulty extends AiDifficulty {
+
+  public MediumDifficulty() {
+    this.strategy = new Random();
+  }
 
   @Override
-  public Input getAiInput(AiStrategy ai, int roundNumber, List<Integer> inputs) {
+  public Input getAiInput(int roundNumber, List<Integer> inputs) {
+
     if (roundNumber == 4) {
-      ai.changeStrategy(roundNumber, inputs);
+      strategy = new Average(inputs);
     }
-    return ai.play();
+    return strategy.getAction();
   }
 }

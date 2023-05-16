@@ -2,9 +2,11 @@ package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
-import nz.ac.auckland.se281.strategies.AiStrategy;
+import nz.ac.auckland.se281.strategies.Strategy;
 
-public interface AiDifficulty {
+public abstract class AiDifficulty {
 
-  Input getAiInput(AiStrategy ai, int roundNumber, List<Integer> inputs);
+  protected Strategy strategy;
+
+  public abstract Input getAiInput( int roundNumber, List<Integer> inputs);
 }
