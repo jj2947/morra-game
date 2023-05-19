@@ -17,11 +17,13 @@ public class Morra {
   private Players players;
   private AiDifficulty aiDifficulty;
 
+  // Constructor
   public Morra() {
     fingers = new ArrayList<>();
     startedGame = false;
   }
 
+  // Implements the new_game command
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     fingers.clear();
     name = options[0];
@@ -36,16 +38,20 @@ public class Morra {
     aiDifficulty = AiFactory.createAi(difficulty);
   }
 
+  // Implements the play command
   public void play() {
 
+    // If the game hasn't started print error message
     if (!startedGame) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
 
+    // If the game has started, increment the round number and print the round number
     roundNumber++;
     MessageCli.START_ROUND.printMessage(String.valueOf(roundNumber));
 
+    // Create a new human object and get the human's input for the game
     Human human = new Human(name);
     Input humanInput = human.play();
 
@@ -53,26 +59,35 @@ public class Morra {
     // strategy and get the ai's input for the game
     Input aiInput = aiDifficulty.getAiInput(roundNumber, fingers);
 
+    // Add the human's input to the fingers list
     fingers.add(humanInput.getFingers());
+
+    // Checks if there is a winner and prints the outcome of the round
     String winner = players.getResults(humanInput, aiInput);
 
+    // Adds to their win counters if a plyer wins
     if (winner.equals("AI")) {
       aiWins++;
     } else if (winner.equals("HUMAN")) {
       humanWins++;
     }
 
+    // Checks if there is a winner of the game and exits the game
     if (players.getWin(aiWins, humanWins, roundNumber, name) == true) {
       startedGame = false;
     }
   }
 
+  // Implements the show_stats command
   public void showStats() {
+
+    // If the game hasn't started print error message
     if (!startedGame) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
 
+    // Prints the stats of each player
     players.printWins(name, humanWins);
     players.printWins("Jarvis", aiWins);
   }
