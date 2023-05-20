@@ -18,7 +18,7 @@ public class HardDifficulty extends AiDifficulty {
 
     // If the round number is greater than 3, then the strategy is changed to the top strategy
     if (roundNumber > 3) {
-      strategy = new Top(inputs);
+      setStrategy(new Top(inputs));
     }
 
     // Returns the AI's input using the correct strategy

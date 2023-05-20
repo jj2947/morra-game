@@ -20,11 +20,11 @@ public class MasterDifficulty extends AiDifficulty {
     // If the round number is greater than 3 and an even number, then the strategy is changed to the
     // average strategy
     if (roundNumber > 3 && roundNumber % 2 == 0) {
-      strategy = new Average(inputs);
+      setStrategy(new Average(inputs));
       // If the round number is greater than 3 and an odd number, then the strategy is changed to
       // the top strategy
     } else if (roundNumber > 3 && roundNumber % 2 == 1) {
-      strategy = new Top(inputs);
+      setStrategy(new Top(inputs));
     }
 
     // Returns the AI's input using the correct strategy

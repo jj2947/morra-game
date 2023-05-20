@@ -18,7 +18,7 @@ public class MediumDifficulty extends AiDifficulty {
 
     // If the round number is greater than 3, then the strategy is changed to the average strategy
     if (roundNumber == 4) {
-      strategy = new Average(inputs);
+      setStrategy(new Average(inputs));
     }
 
     // Returns the AI's input using the correct strategy

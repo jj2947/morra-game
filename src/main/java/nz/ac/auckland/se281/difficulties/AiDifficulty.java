@@ -9,6 +9,11 @@ public abstract class AiDifficulty {
 
   protected Strategy strategy;
 
+  // Method that sets the strategy
+  public void setStrategy(Strategy strategy) {
+    this.strategy = strategy;
+  }
+
   // Method that returns the AI's input
   public abstract Input getAiInput(int roundNumber, List<Integer> inputs);
 }
