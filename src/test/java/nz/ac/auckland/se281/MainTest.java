@@ -1087,12 +1087,87 @@ public class MainTest {
     }
 
     @Test
-    public void TY_01_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
-      runCommands(Main.Command.HELP);
-      assertContains("[2 arguments]");
+    public void T1_01_play_ask_for_input_Jarvis_random_seed_Hard() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+          NEW_GAME + " HARD 2",
+          "Valerio",
+          //
+          PLAY,
+          "1 2"
+          //
+          ,
+          PLAY,
+          "1 3"
+          //
+          ,
+          PLAY,
+          "2 6"
+          //
+          ,
+          PLAY,
+          "1 6"
+          //
+          ,
+          PLAY,
+          "4 6");
+
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      int[] res = MainTest.getPlay(4, "Valerio", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]);
+      res = MainTest.getPlay(5, "Jarvis", getCaptureOut());
+      int fingersJarvis = res[0];
+      int sumJarvis = res[1];
+      // the most common is 2 [of course Jarvis cannot cheat, he does not know that the current finger
+      // because the fingers that Jarvis randomly choose is 2 the sum should be 4 = 2 + 2
+      assertEquals(2, fingersJarvis);
+      assertEquals(3, sumJarvis);
+      assertTrue(MainTest.getOutputByRound(5, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("HUMAN_WINS")));
+
+    }
+
+    @Test
+    public void T1_02_play_ask_for_input_Jarvis_random_seed_master() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+          NEW_GAME + " MASTER 3",
+          "Valerio",
+          //
+          PLAY,
+          "2 5"
+          //
+          ,
+          PLAY,
+          "4 8"
+          //
+          ,
+          PLAY,
+          "2 6"
+          //
+          ,
+          PLAY,
+          "5 10"
+          //
+          ,
+          PLAY,
+          "2 4");
+
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      int[] res = MainTest.getPlay(3, "Valerio", getCaptureOut());
+      assertEquals(2, res[0]);
+      assertEquals(6, res[1]);
+      res = MainTest.getPlay(5, "Jarvis", getCaptureOut());
+      int fingersJarvis = res[0];
+      int sumJarvis = res[1];
+      // the most common is 2 [of course Jarvis cannot cheat, he does not know that the current finger
+      // because the fingers that Jarvis randomly choose is 2 the sum should be 4 = 2 + 2
+      assertEquals(2, fingersJarvis);
+      assertEquals(4, sumJarvis);
+      assertTrue(MainTest.getOutputByRound(5, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("DRAW")));
+
     }
   }
-
-
 }
