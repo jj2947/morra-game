@@ -10,7 +10,7 @@ public abstract class AiDifficulty {
   protected Strategy strategy;
 
   // Method that sets the strategy
-  public void setStrategy(Strategy strategy) {
+  protected void setStrategy(Strategy strategy) {
     this.strategy = strategy;
   }
 
