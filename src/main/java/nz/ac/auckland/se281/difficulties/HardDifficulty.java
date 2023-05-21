@@ -2,15 +2,15 @@ package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
 import nz.ac.auckland.se281.Input;
-import nz.ac.auckland.se281.strategies.Random;
+import nz.ac.auckland.se281.strategies.Strategy;
 import nz.ac.auckland.se281.strategies.Top;
 
 // Class used to represent the hard difficulty of the game
 public class HardDifficulty extends AiDifficulty {
 
   // Constructor for the hard difficulty
-  public HardDifficulty() {
-    this.strategy = new Random();
+  public HardDifficulty(Strategy strategy) {
+    this.strategy = strategy;
   }
 
   @Override

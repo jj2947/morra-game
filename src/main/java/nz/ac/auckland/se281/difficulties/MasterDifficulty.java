@@ -3,15 +3,15 @@ package nz.ac.auckland.se281.difficulties;
 import java.util.List;
 import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.strategies.Average;
-import nz.ac.auckland.se281.strategies.Random;
+import nz.ac.auckland.se281.strategies.Strategy;
 import nz.ac.auckland.se281.strategies.Top;
 
 // Class used to represent the master difficulty of the game
 public class MasterDifficulty extends AiDifficulty {
 
   // Constructor for the master difficulty
-  public MasterDifficulty() {
-    this.strategy = new Random();
+  public MasterDifficulty(Strategy strategy) {
+    this.strategy = strategy;
   }
 
   @Override

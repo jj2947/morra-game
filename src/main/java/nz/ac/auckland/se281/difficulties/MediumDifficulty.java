@@ -3,14 +3,14 @@ package nz.ac.auckland.se281.difficulties;
 import java.util.List;
 import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.strategies.Average;
-import nz.ac.auckland.se281.strategies.Random;
+import nz.ac.auckland.se281.strategies.Strategy;
 
 // Class used to represent the medium difficulty of the game
 public class MediumDifficulty extends AiDifficulty {
 
   // Constructor for the medium difficulty
-  public MediumDifficulty() {
-    this.strategy = new Random();
+  public MediumDifficulty(Strategy strategy) {
+    this.strategy = strategy;
   }
 
   @Override
