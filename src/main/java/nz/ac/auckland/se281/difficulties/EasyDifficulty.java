@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281.difficulties;
 
-import java.util.List;
 import nz.ac.auckland.se281.Input;
 import nz.ac.auckland.se281.strategies.Strategy;
 
@@ -13,7 +12,7 @@ public class EasyDifficulty extends AiDifficulty {
   }
 
   @Override
-  public Input getAiInput(int roundNumber, List<Integer> inputs) {
+  public Input getAiInput() {
 
     // Returns the AI's input using the correct strategy
     return strategy.useStrategy();

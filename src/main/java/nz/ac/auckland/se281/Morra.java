@@ -16,6 +16,7 @@ public class Morra {
   private int humanWins;
   private Players players;
   private AiDifficulty aiDifficulty;
+  private List<Integer> inputs;
 
   // Constructor
   public Morra() {
@@ -35,7 +36,7 @@ public class Morra {
     players = new Players(pointsToWin);
 
     // Creates Ai instance based on difficulty level given by player
-    aiDifficulty = AiFactory.createAi(difficulty);
+    aiDifficulty = AiFactory.createAi(difficulty, this);
   }
 
   // Implements the play command
@@ -55,9 +56,12 @@ public class Morra {
     Human human = new Human(name);
     Input humanInput = human.play();
 
+    // Inputs for the AI to use
+    inputs = fingers;
+
     // The aiDifficulty object takes the aiStrategy object as a parameter to select the right
     // strategy and get the ai's input for the game
-    Input aiInput = aiDifficulty.getAiInput(roundNumber, fingers);
+    Input aiInput = aiDifficulty.getAiInput();
 
     // Add the human's input to the fingers list
     fingers.add(humanInput.getFingers());
@@ -73,7 +77,7 @@ public class Morra {
     }
 
     // Checks if there is a winner of the game and exits the game
-    if (players.getWin(aiWins, humanWins, roundNumber, name) == true) {
+    if (players.getWin(aiWins, humanWins, roundNumber, name)) {
       startedGame = false;
     }
   }
@@ -90,5 +94,15 @@ public class Morra {
     // Prints the stats of each player
     players.printWins(name, humanWins);
     players.printWins("Jarvis", aiWins);
+  }
+
+  // Gets the round number
+  public int getRoundNumber() {
+    return roundNumber;
+  }
+
+  // Gets the list of fingers for the AI
+  public List<Integer> getFingers() {
+    return inputs;
   }
 }
