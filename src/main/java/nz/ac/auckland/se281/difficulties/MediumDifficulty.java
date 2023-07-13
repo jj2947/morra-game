@@ -27,7 +27,7 @@ public class MediumDifficulty extends AiDifficulty {
     inputs = game.getFingers();
 
     // If the round number is greater than 3, then the strategy is changed to the average strategy
-    if (roundNumber == 4) {
+    if (roundNumber > 3) {
       setStrategy(new Average(inputs));
     }
 

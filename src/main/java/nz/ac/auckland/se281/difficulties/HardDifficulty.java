@@ -27,7 +27,7 @@ public class HardDifficulty extends AiDifficulty {
     inputs = game.getFingers();
 
     // If the round number is greater than 3, then the strategy is changed to the top strategy
-    if (roundNumber == 4) {
+    if (roundNumber > 3) {
       setStrategy(new Top(inputs));
     }
 
